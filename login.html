@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود و ثبت نام - دیجیاستور</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Vazirmatn', sans-serif; }
+        .tab-active { border-bottom: 3px solid #ef4444; color: #ef4444; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-red-50 to-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <div class="text-center mb-8">
+            <a href="index.html" class="text-4xl font-bold text-red-500">دیجیاستور</a>
+            <p class="text-gray-600 mt-2">خوش آمدید</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div class="flex border-b">
+                <button onclick="showTab('login')" id="loginTab" class="flex-1 py-4 text-center font-semibold transition tab-active">ورود</button>
+                <button onclick="showTab('register')" id="registerTab" class="flex-1 py-4 text-center font-semibold text-gray-500 transition hover:text-red-500">ثبت نام</button>
+            </div>
+
+            <div id="loginForm" class="p-8">
+                <form onsubmit="handleLogin(event)">
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700">شماره موبایل</label>
+                        <input type="tel" placeholder="09123456789" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition" required>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700">رمز عبور</label>
+                        <input type="password" placeholder="رمز عبور خود را وارد کنید" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition" required>
+                    </div>
+                    <button type="submit" class="w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition shadow-lg">ورود به حساب کاربری</button>
+                </form>
+            </div>
+
+            <div id="registerForm" class="p-8 hidden">
+                <form onsubmit="handleRegister(event)">
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700">نام و نام خانوادگی</label>
+                        <input type="text" placeholder="نام کامل خود را وارد کنید" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700">شماره موبایل</label>
+                        <input type="tel" placeholder="09123456789" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700">ایمیل (اختیاری)</label>
+                        <input type="email" placeholder="example@email.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700">رمز عبور</label>
+                        <input type="password" placeholder="حداقل 8 کاراکتر" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition" required>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700">تکرار رمز عبور</label>
+                        <input type="password" placeholder="رمز عبور را دوباره وارد کنید" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition" required>
+                    </div>
+                    <button type="submit" class="w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition shadow-lg">ثبت نام</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="text-center mt-6">
+            <a href="index.html" class="text-gray-600 hover:text-red-500 transition text-sm">← بازگشت به صفحه اصلی</a>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tab) {
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+
+            if (tab === 'login') {
+                loginTab.classList.add('tab-active');
+                loginTab.classList.remove('text-gray-500');
+                registerTab.classList.remove('tab-active');
+                registerTab.classList.add('text-gray-500');
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+            } else {
+                registerTab.classList.add('tab-active');
+                registerTab.classList.remove('text-gray-500');
+                loginTab.classList.remove('tab-active');
+                loginTab.classList.add('text-gray-500');
+                registerForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const phone = event.target[0].value;
+            const password = event.target[1].value;
+            
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.phone === phone && u.password === password);
+            
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                alert('ورود موفقیتآمیز بود! خوش آمدید ' + user.name);
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            } else {
+                alert('شماره موبایل یا رمز عبور اشتباه است!');
+            }
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = event.target[0].value;
+            const phone = event.target[1].value;
+            const email = event.target[2].value;
+            const password = event.target[3].value;
+            const confirmPassword = event.target[4].value;
+            
+            if (password !== confirmPassword) {
+                alert('رمز عبور و تکرار آن یکسان نیست!');
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            
+            if (users.find(u => u.phone === phone)) {
+                alert('این شماره موبایل قبلا ثبت شده است!');
+                return;
+            }
+            
+            const newUser = {
+                id: Date.now(),
+                name,
+                phone,
+                email,
+                password,
+                registeredAt: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+            
+            alert('ثبت نام با موفقیت انجام شد! خوش آمدید ' + name);
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
