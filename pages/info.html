@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اطلاعات - دیجیاستور</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">   <link href="../css/main.css" rel="stylesheet">
+    <style>
+        body { font-family: Vazirmatn, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white border-b shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="text-2xl font-bold text-blue-500">دیجیاستور</a>
+                <a href="../index.html" class="text-sm text-gray-600 hover:text-blue-500">← بازگشت به فروشگاه</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <div id="content" class="bg-white rounded-xl shadow-sm p-8"></div>
+    </div>
+
+    <script>
+        const infoData = {
+            'faq': {
+                title: '❓ پاسخ به پرسشهای متداول',
+                content: `
+                    <h3 class="text-lg font-bold mb-3">چگونه سفارش ثبت کنم؟</h3>
+                    <p class="text-gray-600 mb-4">محصول مورد نظر را انتخاب کرده، به سبد خرید اضافه کنید و مراحل تکمیل خرید را طی کنید.</p>
+                    
+                    <h3 class="text-lg font-bold mb-3">زمان تحویل سفارش چقدر است؟</h3>
+                    <p class="text-gray-600 mb-4">سفارشات در شهر تهران ۱ تا ۲ روز کاری و در شهرستانها ۳ تا ۵ روز کاری تحویل داده میشود.</p>
+                    
+                    <h3 class="text-lg font-bold mb-3">آیا امکان پرداخت در محل وجود دارد؟</h3>
+                    <p class="text-gray-600 mb-4">بله، شما میتوانید هنگام تحویل کالا، مبلغ را پرداخت کنید.</p>
+                    
+                    <h3 class="text-lg font-bold mb-3">چگونه سفارش خود را پیگیری کنم؟</h3>
+                    <p class="text-gray-600 mb-4">با ورود به حساب کاربری و بخش سفارشات، میتوانید وضعیت سفارش خود را مشاهده کنید.</p>
+                `
+            },
+            'return': {
+                title: '🔄 رویههای بازگرداندن کالا',
+                content: `
+                    <h3 class="text-lg font-bold mb-3">شرایط بازگشت کالا</h3>
+                    <p class="text-gray-600 mb-4">کالاهای خریداری شده را میتوانید تا ۷ روز پس از تحویل، بدون ذکر دلیل مرجوع کنید.</p>
+                    
+                    <h3 class="text-lg font-bold mb-3">کالاهای قابل بازگشت</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-4 space-y-2">
+                        <li>کالا باید در بسته‌بندی اصلی و سالم باشد</li>
+                        <li>پلمپ و برچسب‌های کالا نباید پاره شده باشد</li>
+                        <li>کالا نباید استفاده شده باشد</li>
+                        <li>لوازم جانبی و متعلقات کالا باید کامل باشد</li>
+                    </ul>
+                    
+                    <h3 class="text-lg font-bold mb-3">نحوه بازگشت</h3>
+                    <p class="text-gray-600 mb-4">با تماس با پشتیبانی یا از طریق حساب کاربری، درخواست مرجوعی ثبت کنید. پس از تایید، کالا توسط پیک دریافت خواهد شد.</p>
+                `
+            },
+            'terms': {
+                title: '📋 شرایط استفاده',
+                content: `
+                    <h3 class="text-lg font-bold mb-3">قوانین و مقررات</h3>
+                    <p class="text-gray-600 mb-4">با استفاده از خدمات دیجیاستور، شما قوانین و مقررات زیر را میپذیرید:</p>
+                    
+                    <ul class="list-disc list-inside text-gray-600 mb-4 space-y-2">
+                        <li>اطلاعات ثبت شده باید صحیح و معتبر باشد</li>
+                        <li>هر حساب کاربری فقط برای یک نفر قابل استفاده است</li>
+                        <li>قیمت‌ها ممکن است بدون اطلاع قبلی تغییر کنند</li>
+                        <li>تصاویر محصولات جنبه تزئینی دارند و ممکن است با کالای واقعی تفاوت داشته باشند</li>
+                        <li>دیجیاستور حق لغو سفارش را در صورت عدم موجودی دارد</li>
+                    </ul>
+                    
+                    <h3 class="text-lg font-bold mb-3">حریم خصوصی</h3>
+                    <p class="text-gray-600 mb-4">اطلاعات شخصی شما محفوظ بوده و به هیچ عنوان در اختیار اشخاص ثالث قرار نمیگیرد.</p>
+                `
+            },
+            'order': {
+                title: '🛒 نحوه ثبت سفارش',
+                content: `
+                    <h3 class="text-lg font-bold mb-3">مراحل ثبت سفارش</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="border-r-4 border-blue-500 pr-4">
+                            <h4 class="font-bold mb-2">۱. انتخاب محصول</h4>
+                            <p class="text-gray-600">محصول مورد نظر خود را جستجو کرده و روی آن کلیک کنید.</p>
+                        </div>
+                        
+                        <div class="border-r-4 border-blue-500 pr-4">
+                            <h4 class="font-bold mb-2">۲. افزودن به سبد خرید</h4>
+                            <p class="text-gray-600">روی دکمه "افزودن به سبد" کلیک کنید. میتوانید چندین محصول اضافه کنید.</p>
+                        </div>
+                        
+                        <div class="border-r-4 border-blue-500 pr-4">
+                            <h4 class="font-bold mb-2">۳. مشاهده سبد خرید</h4>
+                            <p class="text-gray-600">روی آیکون سبد خرید کلیک کنید و محصولات را بررسی کنید.</p>
+                        </div>
+                        
+                        <div class="border-r-4 border-blue-500 pr-4">
+                            <h4 class="font-bold mb-2">۴. تکمیل خرید</h4>
+                            <p class="text-gray-600">اطلاعات آدرس و روش پرداخت را وارد کرده و سفارش را نهایی کنید.</p>
+                        </div>
+                    </div>
+                `
+            },
+            'shipping': {
+                title: '🚚 رویه ارسال سفارش',
+                content: `
+                    <h3 class="text-lg font-bold mb-3">روشهای ارسال</h3>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h4 class="font-bold mb-2">📦 ارسال عادی</h4>
+                        <p class="text-gray-600 mb-2">تهران: ۱ تا ۲ روز کاری</p>
+                        <p class="text-gray-600">شهرستان: ۳ تا ۵ روز کاری</p>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg mb-4">
+                        <h4 class="font-bold mb-2">⚡ ارسال اکسپرس</h4>
+                        <p class="text-gray-600 mb-2">تهران: همان روز یا روز بعد</p>
+                        <p class="text-gray-600">هزینه اضافی دارد</p>
+                    </div>
+                    
+                    <h3 class="text-lg font-bold mb-3 mt-6">هزینه ارسال</h3>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>سفارشات بالای ۵۰۰,۰۰۰ تومان: رایگان</li>
+                        <li>سفارشات زیر ۵۰۰,۰۰۰ تومان: ۳۰,۰۰۰ تومان</li>
+                        <li>ارسال اکسپرس: ۵۰,۰۰۰ تومان اضافی</li>
+                    </ul>
+                `
+            },
+            'payment': {
+                title: '💳 شیوههای پرداخت',
+                content: `
+                    <h3 class="text-lg font-bold mb-3">روشهای پرداخت</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="border rounded-lg p-4">
+                            <h4 class="font-bold mb-2">💳 پرداخت آنلاین</h4>
+                            <p class="text-gray-600">پرداخت از طریق درگاه بانکی با تمام کارتهای عضو شتاب</p>
+                        </div>
+                        
+                        <div class="border rounded-lg p-4">
+                            <h4 class="font-bold mb-2">💵 پرداخت در محل</h4>
+                            <p class="text-gray-600">پرداخت نقدی یا کارت به کارت هنگام تحویل کالا</p>
+                        </div>
+                        
+                        <div class="border rounded-lg p-4">
+                            <h4 class="font-bold mb-2">📱 کیف پول</h4>
+                            <p class="text-gray-600">استفاده از موجودی کیف پول دیجیاستور</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-4 rounded-lg mt-6">
+                        <p class="text-sm text-gray-700">⚠️ تمام تراکنشها از طریق درگاه امن بانکی انجام میشود و اطلاعات کارت شما محفوظ است.</p>
+                    </div>
+                `
+            }
+        };
+
+        function loadInfo() {
+            const params = new URLSearchParams(window.location.search);
+            const type = params.get('type') || 'faq';
+            const data = infoData[type] || infoData['faq'];
+            
+            document.getElementById('content').innerHTML = `
+                <h1 class="text-3xl font-bold mb-6">${data.title}</h1>
+                ${data.content}
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadInfo);
+    </script>
+</body>
+</html>
+

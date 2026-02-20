@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب کاربری - دیجیاستور</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">  <link href="../css/main.css" rel="stylesheet">
+    <style>
+        body { font-family: Vazirmatn, sans-serif; }
+        .tab-active { background: #fee2e2; color: #ef4444; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white border-b shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="text-2xl font-bold text-blue-500">دیجیاستور</a>
+                <a href="../index.html" class="text-sm text-gray-600 hover:text-blue-500">بازگشت به فروشگاه</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+            <div class="flex items-center gap-4">
+                <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl font-bold">👤</div>
+                <div>
+                    <h1 class="text-2xl font-bold" id="profileName">کاربر</h1>
+                    <p class="text-gray-500" id="profilePhone">۰۹۱۲۳۴۵۶۷۸۹</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-6">
+            <div class="lg:w-64">
+                <div class="bg-white rounded-xl shadow-sm p-4 space-y-2">
+                    <button onclick="showTab('orders')" id="ordersTab" class="w-full text-right py-3 px-4 rounded-lg hover:bg-gray-50 tab-active">📦 سفارشهای من</button>
+                    <button onclick="showTab('addresses')" id="addressesTab" class="w-full text-right py-3 px-4 rounded-lg hover:bg-gray-50">📍 آدرسها</button>
+                    <button onclick="showTab('info')" id="infoTab" class="w-full text-right py-3 px-4 rounded-lg hover:bg-gray-50">👤 اطلاعات حساب</button>
+                    <button onclick="logoutUser()" class="w-full text-right py-3 px-4 rounded-lg hover:bg-red-50 text-blue-500 mt-4">🚪 خروج از حساب</button>
+                </div>
+            </div>
+
+            <div class="flex-1">
+                <div id="ordersContent" class="bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="text-xl font-bold mb-6">سفارشهای من</h2>
+                    <div id="ordersList"></div>
+                </div>
+
+                <div id="addressesContent" class="bg-white rounded-xl shadow-sm p-6 hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">آدرسهای من</h2>
+                        <button onclick="showAddressForm()" class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600">+ افزودن آدرس</button>
+                    </div>
+                    
+                    <div id="addressForm" class="hidden mb-6 border rounded-lg p-4 bg-gray-50">
+                        <h3 class="font-semibold mb-4">آدرس جدید</h3>
+                        <div class="space-y-3">
+                            <input type="text" id="addressTitle" placeholder="عنوان آدرس (مثلا: منزل، محل کار)" class="w-full border rounded-lg px-3 py-2">
+                            <input type="text" id="addressCity" placeholder="شهر" class="w-full border rounded-lg px-3 py-2">
+                            <textarea id="addressFull" placeholder="آدرس کامل" class="w-full border rounded-lg px-3 py-2 h-24"></textarea>
+                            <input type="text" id="addressPostal" placeholder="کد پستی" class="w-full border rounded-lg px-3 py-2">
+                            <div class="flex gap-2">
+                                <button onclick="saveAddress()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">ذخیره</button>
+                                <button onclick="hideAddressForm()" class="border px-4 py-2 rounded-lg hover:bg-gray-100">انصراف</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="addressesList"></div>
+                </div>
+
+                <div id="infoContent" class="bg-white rounded-xl shadow-sm p-6 hidden">
+                    <h2 class="text-xl font-bold mb-6">اطلاعات حساب کاربری</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">نام و نام خانوادگی</label>
+                            <input type="text" id="infoName" class="w-full border rounded-lg px-3 py-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">شماره موبایل</label>
+                            <input type="text" id="infoPhone" class="w-full border rounded-lg px-3 py-2 bg-gray-100" disabled>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">ایمیل</label>
+                            <input type="email" id="infoEmail" class="w-full border rounded-lg px-3 py-2">
+                        </div>
+                        <button onclick="saveInfo()" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">ذخیره تغییرات</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Helper functions
+        function persianToEnglish(str) {
+            const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            for (let i = 0; i < 10; i++) {
+                str = str.replace(new RegExp(persianNumbers[i], 'g'), englishNumbers[i]);
+            }
+            return str;
+        }
+        
+        function englishToPersian(str) {
+            const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            str = str.toString();
+            for (let i = 0; i < 10; i++) {
+                str = str.replace(new RegExp(englishNumbers[i], 'g'), persianNumbers[i]);
+            }
+            return str;
+        }
+    </script>
+    <script src="../js/profile.js"></script>
+</body>
+</html>
+

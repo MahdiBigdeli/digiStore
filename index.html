@@ -3,31 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فروشگاه اینترنتی</title>
+    <title> فروشگاه اینترنتی دیجی استور</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Vazirmatn', sans-serif; }
-        .slider-container { position: relative; height: 400px; }
-        @media (max-width: 768px) {
-            .slider-container { height: 200px; }
-        }
-        .slider-img { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s; }
-        .slider-img.active { opacity: 1; }
-        .overflow-x-auto::-webkit-scrollbar { display: none; }
-        .overflow-x-auto { -ms-overflow-style: none; scrollbar-width: none; }
-        @media (max-width: 640px) {
-            .text-xxs { font-size: 0.625rem; }
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 </head>
-<body class="bg-white">
+<body class="bg-white" style="font-family: Vazirmatn, sans-serif;">
     <!-- Top Header -->
     <!-- Main Header -->
     <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex items-center gap-2 md:gap-4">
-                <div class="text-xl md:text-3xl font-bold text-red-500">دیجیاستور</div>
+                <div class="text-xl md:text-3xl font-bold text-blue-500">دیجی استور</div>
                 <div class="flex-1 flex bg-gray-100 rounded-lg overflow-hidden">
                     <input type="text" id="searchInput" placeholder="جستجو" class="flex-1 px-2 md:px-4 py-2 md:py-3 bg-transparent outline-none text-xs md:text-sm">
                     <button id="searchBtn" class="px-2 md:px-4 text-base md:text-lg">🔍</button>
@@ -36,10 +23,10 @@
                     <button id="cartBtn" class="border px-2 md:px-4 py-2 rounded-lg text-xs md:text-sm hover:bg-gray-50 relative">
                         <span class="hidden sm:inline">🛒 سبد خرید</span>
                         <span class="sm:hidden">🛒</span>
-                        <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                        <span id="cartCount" class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
                     </button>
                     <div id="userSection" class="relative">
-                        <a href="login.html" id="loginBtn" class="block border px-2 md:px-4 py-2 rounded-lg text-xs md:text-sm hover:bg-gray-50">
+                        <a href="pages/login.html" id="loginBtn" class="block border px-2 md:px-4 py-2 rounded-lg text-xs md:text-sm hover:bg-gray-50">
                             <span class="hidden sm:inline">👤 ورود | ثبت نام</span>
                             <span class="sm:hidden">👤</span>
                         </a>
@@ -48,7 +35,8 @@
                             <span class="sm:hidden">👤</span>
                         </button>
                         <div id="userMenu" class="absolute left-0 top-full mt-2 bg-white border rounded-lg shadow-lg py-2 px-4 hidden z-50 whitespace-nowrap">
-                            <button id="logoutBtn" class="text-red-500 hover:text-red-700 text-sm">خروج از حساب</button>
+                            <a href="pages/profile.html" class="block py-2 text-sm hover:text-blue-500">👤 حساب کاربری</a>
+                            <button id="logoutBtn" class="block w-full text-right py-2 text-blue-500 hover:text-blue-700 text-sm">🚺 خروج از حساب</button>
                         </div>
                     </div>
                 </div>
@@ -60,14 +48,14 @@
     <nav class="bg-white border-b">
         <div class="max-w-7xl mx-auto px-4">
             <ul class="flex gap-6 py-3 overflow-x-auto">
-                <li><a href="category.html?cat=موبایل" class="text-sm hover:text-red-500 whitespace-nowrap">📱 موبایل</a></li>
-                <li><a href="category.html?cat=لپ تاپ" class="text-sm hover:text-red-500 whitespace-nowrap">💻 لپ تاپ</a></li>
-                <li><a href="category.html?cat=لوازم جانبی" class="text-sm hover:text-red-500 whitespace-nowrap">🎧 لوازم جانبی</a></li>
-                <li><a href="category.html?cat=دوربین" class="text-sm hover:text-red-500 whitespace-nowrap">📷 دوربین</a></li>
-                <li><a href="category.html?cat=گیمینگ" class="text-sm hover:text-red-500 whitespace-nowrap">🎮 گیمینگ</a></li>
-                <li><a href="category.html?cat=ساعت هوشمند" class="text-sm hover:text-red-500 whitespace-nowrap">⌚ ساعت هوشمند</a></li>
-                <li><a href="category.html?cat=لوازم خانگی" class="text-sm hover:text-red-500 whitespace-nowrap">🏠 لوازم خانگی</a></li>
-                <li><a href="category.html?cat=پوشاک" class="text-sm hover:text-red-500 whitespace-nowrap">👕 پوشاک</a></li>
+                <li><a href="pages/category.html?cat=موبایل" class="text-sm hover:text-blue-500 whitespace-nowrap">📱 موبایل</a></li>
+                <li><a href="pages/category.html?cat=لپ تاپ" class="text-sm hover:text-blue-500 whitespace-nowrap">💻 لپ تاپ</a></li>
+                <li><a href="pages/category.html?cat=لوازم جانبی" class="text-sm hover:text-blue-500 whitespace-nowrap">🎧 لوازم جانبی</a></li>
+                <li><a href="pages/category.html?cat=دوربین" class="text-sm hover:text-blue-500 whitespace-nowrap">📷 دوربین</a></li>
+                <li><a href="pages/category.html?cat=گیمینگ" class="text-sm hover:text-blue-500 whitespace-nowrap">🎮 گیمینگ</a></li>
+                <li><a href="pages/category.html?cat=ساعت هوشمند" class="text-sm hover:text-blue-500 whitespace-nowrap">⌚ ساعت هوشمند</a></li>
+                <li><a href="pages/category.html?cat=لوازم خانگی" class="text-sm hover:text-blue-500 whitespace-nowrap">🏠 لوازم خانگی</a></li>
+                <li><a href="pages/category.html?cat=پوشاک" class="text-sm hover:text-blue-500 whitespace-nowrap">👕 پوشاک</a></li>
             </ul>
         </div>
     </nav>
@@ -93,79 +81,24 @@
     </section>
 
     <!-- Amazing Offers -->
-    <section class="bg-red-500 py-8">
+    <section class="bg-blue-500 py-8">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-lg md:text-2xl font-bold text-white">⚡ پیشنهاد شگفت انگیز</h2>
             </div>
             <div class="overflow-x-auto">
-                <div class="flex gap-3" style="width: max-content;">
-                    <div class="bg-white rounded-xl p-3 text-center relative hover:shadow-lg transition" style="min-width: 200px; max-width: 200px;">
-                        <span class="absolute top-2 right-2 bg-red-500 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">۳۰٪</span>
-                        <div class="text-5xl my-3"><img src="../website/images/phone 17 promax.webp" alt=""></div>
-                        <h3 class="font-semibold mb-2 text-sm"> گوشی موبایل اپل مدل iPhone 17 Pro Max ZAA تک س...  </h3>
-                        <div class="text-xs text-gray-400 line-through">۳۱۹,۹۹۰,۰۰۰</div>
-                        <div class="text-sm font-bold mb-2">۳۰۰,۹۹۰,۰۰۰ تومان</div>
-                        <button class="add-to-cart w-full bg-red-500 text-white py-1 rounded text-xs hover:bg-red-600" data-name="گوشی موبایل اپل iPhone 17 Pro Max" data-price="۳۰۰,۹۹۰,۰۰۰" data-image="../website/images/phone 17 promax.webp">افزودن به سبد</button>
-                    </div>
-                    <div class="bg-white rounded-xl p-3 text-center relative hover:shadow-lg transition" style="min-width: 200px; max-width: 200px;">
-                        <span class="absolute top-2 right-2 bg-red-500 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">۲۵٪</span>
-                        <div class="text-5xl my-3"><img src="../website/images/laptop asus.webp" alt=""></div>
-                        <h3 class="font-semibold mb-2 text-sm">  لپ تاپ 15.6 اینچی ایسوس مدل Vivobook 15...  </h3>
-                        <div class="text-xs text-gray-400 line-through">۳۰,۰۰۰,۰۰۰</div>
-                        <div class="text-sm font-bold mb-2">۲۲,۵۰۰,۰۰۰ تومان</div>
-                        <button class="add-to-cart w-full bg-red-500 text-white py-1 rounded text-xs hover:bg-red-600" data-name="لپ تاپ ایسوس Vivobook 15" data-price="۲۲,۵۰۰,۰۰۰" data-image="../website/images/laptop asus.webp">افزودن به سبد</button>
-                    </div>
-                    <div class="bg-white rounded-xl p-3 text-center relative hover:shadow-lg transition" style="min-width: 200px; max-width: 200px;">
-                        <span class="absolute top-2 right-2 bg-red-500 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">۴۰٪</span>
-                        <div class="text-5xl my-3"><img src="images/hedset.webp" alt=""></div>
-                        <h3 class="font-semibold mb-2 text-sm">  هدست مخصوص بازی ریزر مدل BLACKSHARK V2   </h3>
-                        <div class="text-xs text-gray-400 line-through">۲,۰۰۰,۰۰۰</div>
-                        <div class="text-sm font-bold mb-2">۱,۲۰۰,۰۰۰ تومان</div>
-                        <button class="add-to-cart w-full bg-red-500 text-white py-1 rounded text-xs hover:bg-red-600" data-name="هدست ریزر BLACKSHARK V2" data-price="۱,۲۰۰,۰۰۰" data-image="images/hedset.webp">افزودن به سبد</button>
-                    </div>
-                    <div class="bg-white rounded-xl p-3 text-center relative hover:shadow-lg transition" style="min-width: 200px; max-width: 200px;">
-                        <span class="absolute top-2 right-2 bg-red-500 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">۳۵٪</span>
-                        <div class="text-5xl my-3"><img src="images/appelwatch.webp" alt=""></div>
-                        <h3 class="font-semibold mb-2 text-sm">  ساعت هوشمند سامسونگ مدل Galaxy Watch 7...  </h3>
-                        <div class="text-xs text-gray-400 line-through">۵,۰۰۰,۰۰۰</div>
-                        <div class="text-sm font-bold mb-2">۳,۲۵۰,۰۰۰ تومان</div>
-                        <button class="add-to-cart w-full bg-red-500 text-white py-1 rounded text-xs hover:bg-red-600" data-name="ساعت هوشمند سامسونگ Galaxy Watch 7" data-price="۳,۲۵۰,۰۰۰" data-image="images/appelwatch.webp">افزودن به سبد</button>
-                    </div>
-                    <div class="bg-white rounded-xl p-3 text-center relative hover:shadow-lg transition" style="min-width: 200px; max-width: 200px;">
-                        <span class="absolute top-2 right-2 bg-red-500 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">۲۰٪</span>
-                        <div class="text-5xl my-3"><img src="images/camera.webp" alt=""></div>
-                        <h3 class="font-semibold mb-2 text-sm"> دوربین فیلم برداری خودرو سوِنتی مِی مدل 70maI...  </h3>
-                        <div class="text-xs text-gray-400 line-through">۱۰,۰۰۰,۰۰۰</div>
-                        <div class="text-sm font-bold mb-2">۸,۰۰۰,۰۰۰ تومان</div>
-                        <button onclick="addToCart('دوربین فیلم برداری 70maI', '۸,۰۰۰,۰۰۰', 'images/camera.webp')" class="w-full bg-red-500 text-white py-1 rounded text-xs hover:bg-red-600">افزودن به سبد</button>
-                    </div>
-                    <div class="bg-white rounded-xl p-3 text-center relative hover:shadow-lg transition" style="min-width: 200px; max-width: 200px;">
-                        <span class="absolute top-2 right-2 bg-red-500 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">۴۵٪</span>
-                        <div class="text-5xl my-3"><img src="images/pes5.webp" alt=""></div>
-                        <h3 class="font-semibold mb-2 text-sm"> خرید و قیمت کنسول بازی سونی مدل PlayStation... </h3>
-                        <div class="text-xs text-gray-400 line-through">۱۳۱,۵۰۰,۰۰۰</div>
-                        <div class="text-sm font-bold mb-2">۱۱,۰۰۰,۰۰۰ تومان</div>
-                        <button onclick="addToCart('کنسول بازی سونی PlayStation 5 Pro', '۱۱,۰۰۰,۰۰۰', 'images/pes5.webp')" class="w-full bg-red-500 text-white py-1 rounded text-xs hover:bg-red-600">افزودن به سبد</button>
-                    </div>
-                    <div class="bg-white rounded-xl p-3 text-center relative hover:shadow-lg transition" style="min-width: 200px; max-width: 200px;">
-                        <span class="absolute top-2 right-2 bg-red-500 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">۳۰٪</span>
-                        <div class="text-5xl my-3"><img src="images/memory.webp" alt=""></div>
-                        <h3 class="font-semibold mb-2 text-sm"> فلش مموری سیلیکون پاور مدل Blaze B10 ظرفی... </h3>
-                        <div class="text-xs text-gray-400 line-through">۳,۰۰۰,۰۰۰</div>
-                        <div class="text-sm font-bold mb-2">۲,۱۰۰,۰۰۰ تومان</div>
-                        <button onclick="addToCart('فلش مموری سیلیکون پاور Blaze B10', '۲,۱۰۰,۰۰۰', 'images/memory.webp')" class="w-full bg-red-500 text-white py-1 rounded text-xs hover:bg-red-600">افزودن به سبد</button>
-                    </div>
-                    <div class="bg-white rounded-xl p-3 text-center relative hover:shadow-lg transition" style="min-width: 200px; max-width: 200px;">
-                        <span class="absolute top-2 right-2 bg-red-500 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">۵۰٪</span>
-                        <div class="text-5xl my-3"><img src="images/mos.webp" alt=""></div>
-                        <h3 class="font-semibold mb-2 text-sm">  ماوس تسکو مدل TM 295 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </h3>
-                        <div class="text-xs text-gray-400 line-through">۱,۰۰۰,۰۰۰</div>
-                        <div class="text-sm font-bold mb-2">۵۰۰,۰۰۰ تومان</div>
-                        <button onclick="addToCart('ماوس تسکو TM 295', '۵۰۰,۰۰۰', 'images/mos.webp')" class="w-full bg-red-500 text-white py-1 rounded text-xs hover:bg-red-600">افزودن به سبد</button>
-                    </div>
+                <div id="amazingOffers" class="flex gap-3" style="width: max-content;">
+                    <!-- محصولات به صورت دینامیک بارگذاری میشوند -->
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Recommended Based on Activity -->
+    <section class="py-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">👁️ پیشنهاد بر اساس بازدید شما</h2>
+            <div id="recommendedProducts" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
         </div>
     </section>
 
@@ -186,61 +119,61 @@
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-2xl font-bold mb-6">محبوبترین محصولات</h2>
             <div class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition">
+                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition cursor-pointer" onclick="window.location.href='pages/product.html?name='+encodeURIComponent('گوشی موبایل اپل iPhone 17 Pro Max')">
                     <div class="text-4xl sm:text-7xl my-1 sm:my-4"><img src="images/phone 17 promax.webp" alt=""></div>
                     <h3 class="font-semibold mb-1 sm:mb-2 text-xs sm:text-base line-clamp-2">گوشی اپل iPhone 17 Pro Max</h3>
                     <div class="text-xs text-gray-400 mb-1 sm:mb-3 hidden sm:block">⭐⭐⭐⭐⭐ (۱۲۳)</div>
                     <div class="text-xs sm:text-lg font-bold mb-1 sm:mb-3">۳۱۹,۹۹۰,۰۰۰ تومان</div>
-                    <button onclick="addToCart('گوشی موبایل اپل iPhone 17 Pro Max', '۳۱۹,۹۹۰,۰۰۰', 'images/phone 17 promax.webp')" class="w-full bg-red-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-red-600">افزودن به سبد</button>
+                    <button onclick="event.stopPropagation(); addToCart('گوشی موبایل اپل iPhone 17 Pro Max', '۳۱۹,۹۹۰,۰۰۰', 'images/phone 17 promax.webp')" class="w-full bg-blue-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-blue-600">افزودن به سبد</button>
                 </div>
-                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition">
+                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition cursor-pointer" onclick="window.location.href='pages/product.html?name='+encodeURIComponent('لپ تاپ ایسوس Vivobook 15')">
                     <div class="text-4xl sm:text-7xl my-1 sm:my-4"><img src="images/laptop asus.webp" alt=""></div>
                     <h3 class="font-semibold mb-1 sm:mb-2 text-xs sm:text-base line-clamp-2">لپ تاپ ایسوس Vivobook 15</h3>
                     <div class="text-xs text-gray-400 mb-1 sm:mb-3 hidden sm:block">⭐⭐⭐⭐ (۸۷)</div>
                     <div class="text-xs sm:text-lg font-bold mb-1 sm:mb-3">۳۰,۰۰۰,۰۰۰ تومان</div>
-                    <button onclick="addToCart('لپ تاپ ایسوس Vivobook 15', '۳۰,۰۰۰,۰۰۰', 'images/laptop asus.webp')" class="w-full bg-red-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-red-600">افزودن به سبد</button>
+                    <button onclick="event.stopPropagation(); addToCart('لپ تاپ ایسوس Vivobook 15', '۳۰,۰۰۰,۰۰۰', 'images/laptop asus.webp')" class="w-full bg-blue-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-blue-600">افزودن به سبد</button>
                 </div>
-                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition">
+                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition cursor-pointer" onclick="window.location.href='pages/product.html?name='+encodeURIComponent('هدست ریزر BLACKSHARK V2')">
                     <div class="text-4xl sm:text-7xl my-1 sm:my-4"><img src="images/hedset.webp" alt=""></div>
                     <h3 class="font-semibold mb-1 sm:mb-2 text-xs sm:text-base line-clamp-2">هدست ریزر BLACKSHARK V2</h3>
                     <div class="text-xs text-gray-400 mb-1 sm:mb-3 hidden sm:block">⭐⭐⭐⭐⭐ (۲۱۵)</div>
                     <div class="text-xs sm:text-lg font-bold mb-1 sm:mb-3">۱,۸۰۰,۰۰۰ تومان</div>
-                    <button onclick="addToCart('هدست ریزر BLACKSHARK V2', '۱,۸۰۰,۰۰۰', 'images/hedset.webp')" class="w-full bg-red-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-red-600">افزودن به سبد</button>
+                    <button onclick="event.stopPropagation(); addToCart('هدست ریزر BLACKSHARK V2', '۱,۸۰۰,۰۰۰', 'images/hedset.webp')" class="w-full bg-blue-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-blue-600">افزودن به سبد</button>
                 </div>
-                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition">
+                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition cursor-pointer" onclick="window.location.href='pages/product.html?name='+encodeURIComponent('ساعت هوشمند سامسونگ Galaxy Watch 7')">
                     <div class="text-4xl sm:text-7xl my-1 sm:my-4"><img src="images/appelwatch.webp" alt=""></div>
                     <h3 class="font-semibold mb-1 sm:mb-2 text-xs sm:text-base line-clamp-2">ساعت سامسونگ Galaxy Watch 7</h3>
                     <div class="text-xs text-gray-400 mb-1 sm:mb-3 hidden sm:block">⭐⭐⭐⭐⭐ (۳۴۲)</div>
                     <div class="text-xs sm:text-lg font-bold mb-1 sm:mb-3">۸,۵۰۰,۰۰۰ تومان</div>
-                    <button onclick="addToCart('ساعت هوشمند سامسونگ Galaxy Watch 7', '۸,۵۰۰,۰۰۰', 'images/appelwatch.webp')" class="w-full bg-red-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-red-600">افزودن به سبد</button>
+                    <button onclick="event.stopPropagation(); addToCart('ساعت هوشمند سامسونگ Galaxy Watch 7', '۸,۵۰۰,۰۰۰', 'images/appelwatch.webp')" class="w-full bg-blue-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-blue-600">افزودن به سبد</button>
                 </div>
-                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition">
+                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition cursor-pointer" onclick="window.location.href='pages/product.html?name='+encodeURIComponent('دوربین فیلم برداری 70maI')">
                     <div class="text-4xl sm:text-7xl my-1 sm:my-4"><img src="images/camera.webp" alt=""></div>
                     <h3 class="font-semibold mb-1 sm:mb-2 text-xs sm:text-base line-clamp-2">دوربین خودرو 70maI</h3>
                     <div class="text-xs text-gray-400 mb-1 sm:mb-3 hidden sm:block">⭐⭐⭐⭐ (۹۸)</div>
                     <div class="text-xs sm:text-lg font-bold mb-1 sm:mb-3">۱۸,۰۰۰,۰۰۰ تومان</div>
-                    <button onclick="addToCart('دوربین فیلم برداری 70maI', '۱۸,۰۰۰,۰۰۰', 'images/camera.webp')" class="w-full bg-red-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-red-600">افزودن به سبد</button>
+                    <button onclick="event.stopPropagation(); addToCart('دوربین فیلم برداری 70maI', '۱۸,۰۰۰,۰۰۰', 'images/camera.webp')" class="w-full bg-blue-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-blue-600">افزودن به سبد</button>
                 </div>
-                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition">
+                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition cursor-pointer" onclick="window.location.href='pages/product.html?name='+encodeURIComponent('کنسول بازی سونی PlayStation 5 Pro')">
                     <div class="text-4xl sm:text-7xl my-1 sm:my-4"><img src="images/pes5.webp" alt=""></div>
                     <h3 class="font-semibold mb-1 sm:mb-2 text-xs sm:text-base line-clamp-2">کنسول PlayStation 5 Pro</h3>
                     <div class="text-xs text-gray-400 mb-1 sm:mb-3 hidden sm:block">⭐⭐⭐⭐⭐ (۴۵۶)</div>
                     <div class="text-xs sm:text-lg font-bold mb-1 sm:mb-3">۱۳۱,۵۰۰,۰۰۰ تومان</div>
-                    <button onclick="addToCart('کنسول بازی سونی PlayStation 5 Pro', '۱۳۱,۵۰۰,۰۰۰', 'images/pes5.webp')" class="w-full bg-red-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-red-600">افزودن به سبد</button>
+                    <button onclick="event.stopPropagation(); addToCart('کنسول بازی سونی PlayStation 5 Pro', '۱۳۱,۵۰۰,۰۰۰', 'images/pes5.webp')" class="w-full bg-blue-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-blue-600">افزودن به سبد</button>
                 </div>
-                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition">
+                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition cursor-pointer" onclick="window.location.href='pages/product.html?name='+encodeURIComponent('فلش مموری سیلیکون پاور Blaze B10')">
                     <div class="text-4xl sm:text-7xl my-1 sm:my-4"><img src="images/memory.webp" alt=""></div>
                     <h3 class="font-semibold mb-1 sm:mb-2 text-xs sm:text-base line-clamp-2">فلش مموری Blaze B10</h3>
                     <div class="text-xs text-gray-400 mb-1 sm:mb-3 hidden sm:block">⭐⭐⭐⭐ (۱۶۷)</div>
                     <div class="text-xs sm:text-lg font-bold mb-1 sm:mb-3">۲,۵۰۰,۰۰۰ تومان</div>
-                    <button onclick="addToCart('فلش مموری سیلیکون پاور Blaze B10', '۲,۵۰۰,۰۰۰', 'images/memory.webp')" class="w-full bg-red-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-red-600">افزودن به سبد</button>
+                    <button onclick="event.stopPropagation(); addToCart('فلش مموری سیلیکون پاور Blaze B10', '۲,۵۰۰,۰۰۰', 'images/memory.webp')" class="w-full bg-blue-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-blue-600">افزودن به سبد</button>
                 </div>
-                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition">
+                <div class="border rounded-xl p-2 sm:p-4 text-center hover:shadow-lg transition cursor-pointer" onclick="window.location.href='pages/product.html?name='+encodeURIComponent('ماوس تسکو TM 295')">
                     <div class="text-4xl sm:text-7xl my-1 sm:my-4"><img src="images/mos.webp" alt=""></div>
                     <h3 class="font-semibold mb-1 sm:mb-2 text-xs sm:text-base line-clamp-2">ماوس تسکو TM 295</h3>
                     <div class="text-xs text-gray-400 mb-1 sm:mb-3 hidden sm:block">⭐⭐⭐⭐⭐ (۲۸۹)</div>
                     <div class="text-xs sm:text-lg font-bold mb-1 sm:mb-3">۹۵۰,۰۰۰ تومان</div>
-                    <button onclick="addToCart('ماوس تسکو TM 295', '۹۵۰,۰۰۰', 'images/mos.webp')" class="w-full bg-red-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-red-600">افزودن به سبد</button>
+                    <button onclick="event.stopPropagation(); addToCart('ماوس تسکو TM 295', '۹۵۰,۰۰۰', 'images/mos.webp')" class="w-full bg-blue-500 text-white py-0.5 sm:py-2 rounded-lg text-xxs sm:text-base font-semibold hover:bg-blue-600">افزودن به سبد</button>
                 </div>
             </div>
         </div>
@@ -287,10 +220,23 @@
             <div class="absolute bottom-0 left-0 right-0 p-4 border-t bg-white">
                 <div class="flex justify-between mb-3">
                     <span class="font-bold">جمع کل:</span>
-                    <span id="totalPrice" class="font-bold text-red-500">۰ تومان</span>
+                    <span id="totalPrice" class="font-bold text-blue-500">۰ تومان</span>
                 </div>
-                <button class="w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600">تکمیل خرید</button>
+                <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600" onclick="window.location.href='pages/checkout.html'">تکمیل خرید</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center animate-bounce">
+            <div class="text-6xl mb-4">🎉</div>
+            <h2 class="text-2xl font-bold mb-2">خوش آمدید!</h2>
+            <p class="text-gray-600 mb-4">سلام <span id="welcomeUserName" class="font-bold text-blue-500"></span> عزیز</p>
+            <p class="text-sm text-gray-500 mb-6">خوشحالیم که دوباره به دیجیاستور برگشتید! 🛍️</p>
+            <button onclick="closeWelcomeModal()" class="bg-blue-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600">
+                شروع خرید
+            </button>
         </div>
     </div>
 
@@ -305,17 +251,17 @@
                 <div>
                     <h4 class="font-semibold mb-4">خدمات مشتریان</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white">پاسخ به پرسشهای متداول</a></li>
-                        <li><a href="#" class="hover:text-white">رویههای بازگرداندن کالا</a></li>
-                        <li><a href="#" class="hover:text-white">شرایط استفاده</a></li>
+                        <li><a href="pages/info.html?type=faq" class="hover:text-white">پاسخ به پرسشهای متداول</a></li>
+                        <li><a href="pages/info.html?type=return" class="hover:text-white">رویههای بازگرداندن کالا</a></li>
+                        <li><a href="pages/info.html?type=terms" class="hover:text-white">شرایط استفاده</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">راهنمای خرید</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-white">نحوه ثبت سفارش</a></li>
-                        <li><a href="#" class="hover:text-white">رویه ارسال سفارش</a></li>
-                        <li><a href="#" class="hover:text-white">شیوههای پرداخت</a></li>
+                        <li><a href="pages/info.html?type=order" class="hover:text-white">نحوه ثبت سفارش</a></li>
+                        <li><a href="pages/info.html?type=shipping" class="hover:text-white">رویه ارسال سفارش</a></li>
+                        <li><a href="pages/info.html?type=payment" class="hover:text-white">شیوههای پرداخت</a></li>
                     </ul>
                 </div>
                 <div>
@@ -333,6 +279,9 @@
         </div>
     </footer>
 
+    <script src="js/products.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/amazing-offers.js"></script>
+    <script src="js/recommendations.js"></script>
 </body>
 </html>

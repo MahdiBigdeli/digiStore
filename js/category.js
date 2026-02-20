@@ -25,10 +25,12 @@ function applyFilters() {
     let products = [...allFilteredProducts];
     
     const sortValue = document.getElementById('sortFilter').value;
-    const priceRange = document.querySelector('input[name="priceRange"]:checked').value;
+    const minPrice = document.getElementById('minPrice').value.trim();
+    const maxPrice = document.getElementById('maxPrice').value.trim();
     
-    if (priceRange !== 'all') {
-        const [min, max] = priceRange.split('-').map(Number);
+    if (minPrice || maxPrice) {
+        const min = minPrice ? parseInt(persianToEnglish(minPrice).replace(/,/g, '')) : 0;
+        const max = maxPrice ? parseInt(persianToEnglish(maxPrice).replace(/,/g, '')) : Infinity;
         products = products.filter(p => {
             const price = parseInt(persianToEnglish(p.price).replace(/,/g, ''));
             return price >= min && price <= max;
@@ -58,6 +60,10 @@ function applyFilters() {
     renderProducts(products);
 }
 
+function applyCustomPriceFilter() {
+    applyFilters();
+}
+
 function renderProducts(products) {
     const grid = document.getElementById('productsGrid');
     const emptyState = document.getElementById('emptyState');
@@ -74,15 +80,15 @@ function renderProducts(products) {
     emptyState.classList.add('hidden');
     
     grid.innerHTML = products.map(product => `
-        <div class="bg-white border rounded-xl p-4 text-center hover:shadow-lg transition">
+        <div class="bg-white border rounded-xl p-4 text-center hover:shadow-lg transition cursor-pointer" onclick="window.location.href='product.html?name=${encodeURIComponent(product.name)}'">
             <div class="mb-4">
-                <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-contain">
+                <img src="../${product.image}" alt="${product.name}" class="w-full h-48 object-contain">
             </div>
             <h3 class="font-semibold mb-2 text-sm line-clamp-2 h-10">${product.name}</h3>
             <div class="text-xs text-gray-400 mb-2">${product.rating} (${product.reviews})</div>
-            <div class="text-lg font-bold mb-3 text-red-500">${product.price} تومان</div>
-            <button onclick="addToCart('${product.name}', '${product.price}', '${product.image}')" 
-                class="w-full bg-red-500 text-white py-2 rounded-lg text-sm font-semibold hover:bg-red-600 transition">
+            <div class="text-lg font-bold mb-3 text-blue-500">${product.price} تومان</div>
+            <button onclick="event.stopPropagation(); addToCart('${product.name}', '${product.price}', '${product.image}')" 
+                class="w-full bg-blue-500 text-white py-2 rounded-lg text-sm font-semibold hover:bg-blue-600 transition">
                 افزودن به سبد
             </button>
         </div>
@@ -135,9 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     document.getElementById('sortFilter').addEventListener('change', applyFilters);
-    document.querySelectorAll('.price-filter').forEach(filter => {
-        filter.addEventListener('change', applyFilters);
-    });
     
     const cartBtn = document.getElementById('cartBtn');
     if (cartBtn) cartBtn.addEventListener('click', toggleCart);

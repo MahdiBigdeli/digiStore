@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تکمیل خرید - دیجیاستور</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">   <link href="../css/main.css" rel="stylesheet">
+    <style>
+        body { font-family: Vazirmatn, sans-serif; }
+        .step-active { background: #ef4444; color: white; }
+        .step-completed { background: #22c55e; color: white; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white border-b shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="text-2xl font-bold text-blue-500">دیجیاستور</a>
+                <div class="text-sm text-gray-600">تکمیل خرید</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="flex items-center justify-center mb-8">
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <div id="step1" class="w-10 h-10 rounded-full flex items-center justify-center font-bold step-active">۱</div>
+                    <span class="text-sm font-semibold">سبد خرید</span>
+                </div>
+                <div class="w-16 h-1 bg-gray-300"></div>
+                <div class="flex items-center gap-2">
+                    <div id="step2" class="w-10 h-10 rounded-full flex items-center justify-center font-bold bg-gray-300">۲</div>
+                    <span class="text-sm font-semibold">اطلاعات ارسال</span>
+                </div>
+                <div class="w-16 h-1 bg-gray-300"></div>
+                <div class="flex items-center gap-2">
+                    <div id="step3" class="w-10 h-10 rounded-full flex items-center justify-center font-bold bg-gray-300">۳</div>
+                    <span class="text-sm font-semibold">پرداخت</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2">
+                <div id="cartStep" class="bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="text-xl font-bold mb-6">سبد خرید شما</h2>
+                    <div id="checkoutCartItems"></div>
+                    <button onclick="goToStep(2)" class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 mt-6">ادامه</button>
+                </div>
+
+                <div id="addressStep" class="bg-white rounded-xl shadow-sm p-6 hidden">
+                    <h2 class="text-xl font-bold mb-6">انتخاب آدرس ارسال</h2>
+                    <div id="addressList" class="space-y-3 mb-6"></div>
+                    
+                    <div class="border-t pt-6 mb-6">
+                        <h3 class="font-semibold mb-4">زمان ارسال</h3>
+                        <div id="deliveryTimeSection"></div>
+                    </div>
+                    
+                    <div class="border-t pt-6">
+                        <h3 class="font-semibold mb-4">اطلاعات گیرنده</h3>
+                        <div class="space-y-3">
+                            <input type="text" id="receiverName" placeholder="نام و نام خانوادگی گیرنده" class="w-full border rounded-lg px-3 py-2">
+                            <input type="tel" id="receiverPhone" placeholder="شماره تماس گیرنده" class="w-full border rounded-lg px-3 py-2">
+                        </div>
+                    </div>
+                    <div class="flex gap-3 mt-6">
+                        <button onclick="goToStep(1)" class="flex-1 border py-3 rounded-lg font-semibold hover:bg-gray-50">بازگشت</button>
+                        <button onclick="goToStep(3)" class="flex-1 bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600">ادامه</button>
+                    </div>
+                </div>
+
+                <div id="paymentStep" class="bg-white rounded-xl shadow-sm p-6 hidden">
+                    <h2 class="text-xl font-bold mb-6">روش پرداخت</h2>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="payment" value="online" checked class="w-5 h-5">
+                            <div>
+                                <div class="font-semibold">💳 پرداخت آنلاین</div>
+                                <div class="text-sm text-gray-500">پرداخت امن با کلیه کارتهای بانکی</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="payment" value="cash" class="w-5 h-5">
+                            <div>
+                                <div class="font-semibold">💵 پرداخت در محل</div>
+                                <div class="text-sm text-gray-500">پرداخت هنگام تحویل کالا</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="flex gap-3 mt-6">
+                        <button onclick="goToStep(2)" class="flex-1 border py-3 rounded-lg font-semibold hover:bg-gray-50">بازگشت</button>
+                        <button onclick="completeOrder()" class="flex-1 bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600">تکمیل خرید</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-sm p-6 sticky top-4">
+                    <h3 class="font-bold mb-4">خلاصه سفارش</h3>
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">قیمت کالاها</span>
+                            <span id="subtotal" class="font-semibold">۰ تومان</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">هزینه ارسال</span>
+                            <span id="shippingCost" class="font-semibold text-green-600">رایگان</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">تخفیف</span>
+                            <span class="font-semibold text-blue-500">۰ تومان</span>
+                        </div>
+                    </div>
+                    <div class="border-t pt-4">
+                        <div class="flex justify-between mb-4">
+                            <span class="font-bold">مبلغ قابل پرداخت</span>
+                            <span id="total" class="font-bold text-blue-500 text-xl">۰ تومان</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function persianToEnglish(str) {
+            const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            for (let i = 0; i < 10; i++) {
+                str = str.replace(new RegExp(persianNumbers[i], 'g'), englishNumbers[i]);
+            }
+            return str;
+        }
+        
+        function englishToPersian(str) {
+            const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            const englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            str = str.toString();
+            for (let i = 0; i < 10; i++) {
+                str = str.replace(new RegExp(englishNumbers[i], 'g'), persianNumbers[i]);
+            }
+            return str;
+        }
+    </script>
+    <script src="../js/checkout.js"></script>
+</body>
+</html>
+

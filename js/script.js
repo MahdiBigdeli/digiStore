@@ -14,6 +14,7 @@ function loadUserData() {
         currentUser = JSON.parse(userData);
         updateUserUI();
         loadUserCart();
+        showWelcomeModal();
     }
 }
 
@@ -249,11 +250,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add to cart buttons
     document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
             const name = this.dataset.name;
             const price = this.dataset.price;
             const image = this.dataset.image;
             addToCart(name, price, image);
+        });
+    });
+    
+    // Make product cards clickable
+    document.querySelectorAll('[data-product-name]').forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function() {
+            const productName = this.dataset.productName;
+            window.location.href = `product.html?name=${encodeURIComponent(productName)}`;
         });
     });
 
@@ -275,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
         searchBtn.addEventListener('click', () => {
             const query = searchInput.value.trim();
             if (query) {
-                window.location.href = `category.html?search=${encodeURIComponent(query)}`;
+                window.location.href = `pages/category.html?search=${encodeURIComponent(query)}`;
             }
         });
         
@@ -283,117 +294,26 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.key === 'Enter') {
                 const query = searchInput.value.trim();
                 if (query) {
-                    window.location.href = `category.html?search=${encodeURIComponent(query)}`;
+                    window.location.href = `pages/category.html?search=${encodeURIComponent(query)}`;
                 }
             }
         });
     }
 });
 
-function nextSlide() {
-    goToSlide((currentSlide + 1) % 4);
-}etInterval(nextSlide, 5000);
-
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-});
-
-// Add to Cart
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', function() {
-        const productName = this.closest('.product-card').querySelector('h3').textContent;
-        alert(`${productName} به سبد خرید اضافه شد!`);
-        
-        // Animation
-        this.textContent = '✓ اضافه شد';
-        this.style.background = '#4caf50';
-        
-        setTimeout(() => {
-            this.textContent = 'افزودن به سبد';
-            this.style.background = '';
-        }, 2000);
-    });
-});
-
-// Header Scroll Effect
-let lastScroll = 0;
-const header = document.querySelector('.header');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+function showWelcomeModal() {
+    const lastWelcome = localStorage.getItem('lastWelcomeShown');
+    const now = Date.now();
     
-    if (currentScroll > 100) {
-        header.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
-    } else {
-        header.style.boxShadow = 'none';
+    if (!lastWelcome || (now - parseInt(lastWelcome)) > 3600000) {
+        const modal = document.getElementById('welcomeModal');
+        const userName = document.getElementById('welcomeUserName');
+        userName.textContent = currentUser.name;
+        modal.classList.remove('hidden');
+        localStorage.setItem('lastWelcomeShown', now.toString());
     }
-    
-    lastScroll = currentScroll;
-});
+}
 
-// Search Functionality
-const searchInput = document.querySelector('.search-box input');
-const searchButton = document.querySelector('.search-box button');
-
-searchButton.addEventListener('click', () => {
-    const searchTerm = searchInput.value.trim();
-    if (searchTerm) {
-        alert(`جستجو برای: ${searchTerm}`);
-    }
-});
-
-searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        const searchTerm = searchInput.value.trim();
-        if (searchTerm) {
-            alert(`جستجو برای: ${searchTerm}`);
-        }
-    }
-});
-
-// Product Card Hover Effect
-document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-5px)';
-        this.style.transition = 'transform 0.3s ease';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-    });
-});
-
-// Category Menu Scroll
-const categoryMenu = document.querySelector('.category-menu');
-let isDown = false;
-let startX;
-let scrollLeft;
-
-categoryMenu.addEventListener('mousedown', (e) => {
-    isDown = true;
-    startX = e.pageX - categoryMenu.offsetLeft;
-    scrollLeft = categoryMenu.scrollLeft;
-});
-
-categoryMenu.addEventListener('mouseleave', () => {
-    isDown = false;
-});
-
-categoryMenu.addEventListener('mouseup', () => {
-    isDown = false;
-});
-
-categoryMenu.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - categoryMenu.offsetLeft;
-    const walk = (x - startX) * 2;
-    categoryMenu.scrollLeft = scrollLeft - walk;
-});
+function closeWelcomeModal() {
+    document.getElementById('welcomeModal').classList.add('hidden');
+}
