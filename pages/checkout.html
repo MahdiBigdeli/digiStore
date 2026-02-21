@@ -23,101 +23,99 @@
     </header>
 
     <div class="max-w-6xl mx-auto px-4 py-8">
-        <div class="flex items-center justify-center mb-8">
-            <div class="flex items-center gap-4">
-                <div class="flex items-center gap-2">
-                    <div id="step1" class="w-10 h-10 rounded-full flex items-center justify-center font-bold step-active">۱</div>
-                    <span class="text-sm font-semibold">سبد خرید</span>
-                </div>
-                <div class="w-16 h-1 bg-gray-300"></div>
-                <div class="flex items-center gap-2">
-                    <div id="step2" class="w-10 h-10 rounded-full flex items-center justify-center font-bold bg-gray-300">۲</div>
-                    <span class="text-sm font-semibold">اطلاعات ارسال</span>
-                </div>
-                <div class="w-16 h-1 bg-gray-300"></div>
-                <div class="flex items-center gap-2">
-                    <div id="step3" class="w-10 h-10 rounded-full flex items-center justify-center font-bold bg-gray-300">۳</div>
-                    <span class="text-sm font-semibold">پرداخت</span>
-                </div>
+        <div class="flex flex-col sm:flex-row items-center justify-center mb-8 gap-2 sm:gap-4 overflow-x-auto px-4">
+            <div class="flex items-center gap-2">
+                <div id="step1" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold step-active text-sm sm:text-base">۱</div>
+                <span class="text-xs sm:text-sm font-semibold whitespace-nowrap">سبد خرید</span>
+            </div>
+            <div class="w-8 sm:w-16 h-1 bg-gray-300"></div>
+            <div class="flex items-center gap-2">
+                <div id="step2" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold bg-gray-300 text-sm sm:text-base">۲</div>
+                <span class="text-xs sm:text-sm font-semibold whitespace-nowrap">اطلاعات ارسال</span>
+            </div>
+            <div class="w-8 sm:w-16 h-1 bg-gray-300"></div>
+            <div class="flex items-center gap-2">
+                <div id="step3" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold bg-gray-300 text-sm sm:text-base">۳</div>
+                <span class="text-xs sm:text-sm font-semibold whitespace-nowrap">پرداخت</span>
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
             <div class="lg:col-span-2">
-                <div id="cartStep" class="bg-white rounded-xl shadow-sm p-6">
-                    <h2 class="text-xl font-bold mb-6">سبد خرید شما</h2>
+                <div id="cartStep" class="bg-white rounded-xl shadow-sm p-4 sm:p-6">
+                    <h2 class="text-lg sm:text-xl font-bold mb-4 sm:mb-6">سبد خرید شما</h2>
                     <div id="checkoutCartItems"></div>
-                    <button onclick="goToStep(2)" class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 mt-6">ادامه</button>
+                    <button onclick="goToStep(2)" class="w-full bg-blue-500 text-white py-2 sm:py-3 rounded-lg font-semibold hover:bg-blue-600 mt-4 sm:mt-6 text-sm sm:text-base">ادامه</button>
                 </div>
 
-                <div id="addressStep" class="bg-white rounded-xl shadow-sm p-6 hidden">
-                    <h2 class="text-xl font-bold mb-6">انتخاب آدرس ارسال</h2>
-                    <div id="addressList" class="space-y-3 mb-6"></div>
+                <div id="addressStep" class="bg-white rounded-xl shadow-sm p-4 sm:p-6 hidden">
+                    <h2 class="text-lg sm:text-xl font-bold mb-4 sm:mb-6">انتخاب آدرس ارسال</h2>
+                    <div id="addressList" class="space-y-3 mb-4 sm:mb-6"></div>
                     
-                    <div class="border-t pt-6 mb-6">
-                        <h3 class="font-semibold mb-4">زمان ارسال</h3>
+                    <div class="border-t pt-4 sm:pt-6 mb-4 sm:mb-6">
+                        <h3 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">زمان ارسال</h3>
                         <div id="deliveryTimeSection"></div>
                     </div>
                     
-                    <div class="border-t pt-6">
-                        <h3 class="font-semibold mb-4">اطلاعات گیرنده</h3>
+                    <div class="border-t pt-4 sm:pt-6">
+                        <h3 class="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">اطلاعات گیرنده</h3>
                         <div class="space-y-3">
-                            <input type="text" id="receiverName" placeholder="نام و نام خانوادگی گیرنده" class="w-full border rounded-lg px-3 py-2">
-                            <input type="tel" id="receiverPhone" placeholder="شماره تماس گیرنده" class="w-full border rounded-lg px-3 py-2">
+                            <input type="text" id="receiverName" placeholder="نام و نام خانوادگی گیرنده" class="w-full border rounded-lg px-3 py-2 text-sm sm:text-base">
+                            <input type="tel" id="receiverPhone" placeholder="شماره تماس گیرنده" class="w-full border rounded-lg px-3 py-2 text-sm sm:text-base">
                         </div>
                     </div>
-                    <div class="flex gap-3 mt-6">
-                        <button onclick="goToStep(1)" class="flex-1 border py-3 rounded-lg font-semibold hover:bg-gray-50">بازگشت</button>
-                        <button onclick="goToStep(3)" class="flex-1 bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600">ادامه</button>
+                    <div class="flex gap-3 mt-4 sm:mt-6">
+                        <button onclick="goToStep(1)" class="flex-1 border py-2 sm:py-3 rounded-lg font-semibold hover:bg-gray-50 text-sm sm:text-base">بازگشت</button>
+                        <button onclick="goToStep(3)" class="flex-1 bg-blue-500 text-white py-2 sm:py-3 rounded-lg font-semibold hover:bg-blue-600 text-sm sm:text-base">ادامه</button>
                     </div>
                 </div>
 
-                <div id="paymentStep" class="bg-white rounded-xl shadow-sm p-6 hidden">
-                    <h2 class="text-xl font-bold mb-6">روش پرداخت</h2>
+                <div id="paymentStep" class="bg-white rounded-xl shadow-sm p-4 sm:p-6 hidden">
+                    <h2 class="text-lg sm:text-xl font-bold mb-4 sm:mb-6">روش پرداخت</h2>
                     <div class="space-y-3">
-                        <label class="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
-                            <input type="radio" name="payment" value="online" checked class="w-5 h-5">
+                        <label class="flex items-center gap-3 p-3 sm:p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="payment" value="online" checked class="w-4 h-4 sm:w-5 sm:h-5">
                             <div>
-                                <div class="font-semibold">💳 پرداخت آنلاین</div>
-                                <div class="text-sm text-gray-500">پرداخت امن با کلیه کارتهای بانکی</div>
+                                <div class="font-semibold text-sm sm:text-base">💳 پرداخت آنلاین</div>
+                                <div class="text-xs sm:text-sm text-gray-500">پرداخت امن با کلیه کارتهای بانکی</div>
                             </div>
                         </label>
-                        <label class="flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
-                            <input type="radio" name="payment" value="cash" class="w-5 h-5">
+                        <label class="flex items-center gap-3 p-3 sm:p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="payment" value="cash" class="w-4 h-4 sm:w-5 sm:h-5">
                             <div>
-                                <div class="font-semibold">💵 پرداخت در محل</div>
-                                <div class="text-sm text-gray-500">پرداخت هنگام تحویل کالا</div>
+                                <div class="font-semibold text-sm sm:text-base">💵 پرداخت در محل</div>
+                                <div class="text-xs sm:text-sm text-gray-500">پرداخت هنگام تحویل کالا</div>
                             </div>
                         </label>
                     </div>
-                    <div class="flex gap-3 mt-6">
-                        <button onclick="goToStep(2)" class="flex-1 border py-3 rounded-lg font-semibold hover:bg-gray-50">بازگشت</button>
-                        <button onclick="completeOrder()" class="flex-1 bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600">تکمیل خرید</button>
+                    <div class="flex gap-3 mt-4 sm:mt-6">
+                        <button onclick="goToStep(2)" class="flex-1 border py-2 sm:py-3 rounded-lg font-semibold hover:bg-gray-50 text-sm sm:text-base">بازگشت</button>
+                        <button onclick="completeOrder()" class="flex-1 bg-green-500 text-white py-2 sm:py-3 rounded-lg font-semibold hover:bg-green-600 text-sm sm:text-base">تکمیل خرید</button>
                     </div>
                 </div>
             </div>
 
             <div class="lg:col-span-1">
-                <div class="bg-white rounded-xl shadow-sm p-6 sticky top-4">
-                    <h3 class="font-bold mb-4">خلاصه سفارش</h3>
-                    <div class="space-y-3 mb-4">
-                        <div class="flex justify-between text-sm">
+                <div class="bg-white rounded-xl shadow-sm p-4 sm:p-6 lg:sticky lg:top-4">
+                    <h3 class="font-bold mb-3 sm:mb-4 text-sm sm:text-base">خلاصه سفارش</h3>
+                    <div class="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
+                        <div class="flex justify-between text-xs sm:text-sm">
                             <span class="text-gray-600">قیمت کالاها</span>
                             <span id="subtotal" class="font-semibold">۰ تومان</span>
                         </div>
-                        <div class="flex justify-between text-sm">
+                        <div class="flex justify-between text-xs sm:text-sm">
                             <span class="text-gray-600">هزینه ارسال</span>
                             <span id="shippingCost" class="font-semibold text-green-600">رایگان</span>
                         </div>
-                        <div class="flex justify-between text-sm">
+                        <div class="flex justify-between text-xs sm:text-sm">
                             <span class="text-gray-600">تخفیف</span>
                             <span class="font-semibold text-blue-500">۰ تومان</span>
                         </div>
                     </div>
-                    <div class="border-t pt-4">
-                        <div class="flex justify-between mb-4">
-                            <span class="font-bold">مبلغ قابل پرداخت</span>
-                            <span id="total" class="font-bold text-blue-500 text-xl">۰ تومان</span>
+                    <div class="border-t pt-3 sm:pt-4">
+                        <div class="flex justify-between mb-3 sm:mb-4">
+                            <span class="font-bold text-sm sm:text-base">مبلغ قابل پرداخت</span>
+                            <span id="total" class="font-bold text-blue-500 text-lg sm:text-xl">۰ تومان</span>
                         </div>
                     </div>
                 </div>
